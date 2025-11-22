@@ -1,3 +1,7 @@
+<div align="center">
+<p>English | <a href="README.zh-CN.md">简体中文</a></p>
+</div>
+
 # docker-mini-openharmony
 Because the userland of OpenHarmony can run on the Linux kernel, containerization of OpenHarmony is feasible.
 
@@ -20,6 +24,13 @@ Run the container with default command
 docker run -itd --name=ohos ghcr.io/hqzing/docker-mini-openharmony:latest
 docker exec -it ohos sh
 ```
+
+Available tags
+| Tag     | Description                                                             |
+|---------|-------------------------------------------------------------------------|
+| latest  | The latest release. currently equivalent to v6.0.                       |
+| v6.0    | An image based on OpenHarmony 6.0 Release.                              |
+| main    | The mainline version, built using the latest build scripts from the main branch of this repository. |
 
 ## Need more software?
 The OpenHarmony root filesystem (rootfs) is composed of three main components: [musl libc](https://musl.libc.org), [toybox](https://landley.net/toybox), and [mksh](https://github.com/MirBSD/mksh). Command-line utilities are provided by `toybox`, which offers only a minimal set of tools.
