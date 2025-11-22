@@ -28,7 +28,7 @@ docker exec -it ohos sh
 Available tags
 | Tag     | Description                                                             |
 |---------|-------------------------------------------------------------------------|
-| latest  | The latest release. currently equivalent to v6.0.                       |
+| latest  | The latest release (currently equivalent to v6.0).                      |
 | v6.0    | An image based on OpenHarmony 6.0 Release.                              |
 | main    | The mainline version, built using the latest build scripts from the main branch of this repository. |
 
@@ -39,7 +39,7 @@ Since OpenHarmony currently does not include a package manager, additional softw
 
 For convenience, `curl` is pre-installed in the container image, allowing users to download additional software manually.
 
-A lot of software compiled for the linux-musl-arm64 platform can run in this container. For example, `make` from the Alpine Linux package repository is compatible:
+A lot of software compiled for the aarch64-linux-musl platform can run in this container. For example, `make` from the Alpine Linux package repository is compatible:
 
 ```sh
 package_name="make"
@@ -69,7 +69,7 @@ jobs:
     container:
       image: ghcr.io/hqzing/docker-mini-openharmony:latest
       volumes:
-        - /tmp/node20:/__e/node20:rw,rshared
+        - /opt/node20:/__e/node20:rw,rshared
     steps:
       - name: Setup node for actions
         run: |

@@ -28,18 +28,18 @@ docker exec -it ohos sh
 可用的标签
 | 标签       | 描述                                                         |
 |------------|----------------------------------------------------------    |
-| latest     | 最新的正式版本，当前等价于 v6.0                              |
+| latest     | 最新的正式版本（当前等价于 v6.0）                            |
 | v6.0       | 基于 OpenHarmony 6.0 Release 制作的镜像                      |
 | main       | 主干版本，基于本仓库 main 分支的最新构建脚本进行构建         | 
 
 ## 需要更多软件?
-OpenHarmony 的根文件系统（rootfs）主要由三个部分组成：[musl libc](https://musl.libc.org)、[toybox](https://landley.net/toybox) 和 [mksh](https://github.com/MirBSD/mksh)。命令行实用工具（Command-line utilities）由 `toybox` 提供，但 `toybox` 只提供了很少量的命令。
+OpenHarmony 的根文件系统（rootfs）主要由三个部分组成：[musl libc](https://musl.libc.org)、[toybox](https://landley.net/toybox) 和 [mksh](https://github.com/MirBSD/mksh)。命令行实用工具（Command-line utilities）由 `toybox` 提供，它只提供了很少量的命令。
 
 由于 OpenHarmony 目前还没有包管理器，所以我们没法通过一条命令去自动下载安装软件包，只能手动下载。
 
 为了方便用户手动下载软件，容器镜像中预置了一个 `curl`。
 
-许多为 linux-musl-arm64 平台编译的软件都可以在这个容器中运行。例如，来自 Alpine Linux 软件仓库的 `make` 就是兼容的:
+许多为 aarch64-linux-musl 平台编译的软件都可以在这个容器中运行。例如，来自 Alpine Linux 软件仓库的 `make` 就是兼容的:
 
 ```sh
 package_name="make"
@@ -68,7 +68,7 @@ jobs:
     container:
       image: ghcr.io/hqzing/docker-mini-openharmony:latest
       volumes:
-        - /tmp/node20:/__e/node20:rw,rshared
+        - /opt/node20:/__e/node20:rw,rshared
     steps:
       - name: Setup node for actions
         run: |
