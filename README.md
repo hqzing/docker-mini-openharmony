@@ -14,9 +14,6 @@ arm64 only
 Pull from GitHub Container Registry
 ```sh
 docker pull ghcr.io/hqzing/docker-mini-openharmony:latest
-
-# Chinese mirror site
-# docker pull ghcr.nju.edu.cn/hqzing/docker-mini-openharmony:latest
 ```
 
 Run the container with default command

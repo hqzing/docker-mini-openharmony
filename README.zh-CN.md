@@ -14,9 +14,6 @@
 从 GitHub Container Registry 拉取镜像
 ```sh
 docker pull ghcr.io/hqzing/docker-mini-openharmony:latest
-
-# 国内的镜像站
-# docker pull ghcr.nju.edu.cn/hqzing/docker-mini-openharmony:latest
 ```
 
 使用默认命令运行容器
