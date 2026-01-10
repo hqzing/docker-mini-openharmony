@@ -104,4 +104,20 @@ cd docker-mini-openharmony
 DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64 -t docker-mini-openharmony:latest .
 ```
 
-Since the build machine is x64-based while the container is arm64-based, you cannot run the container directly on the build machine. Instead, you must export or publish it and then deploy it on an arm64 server.
+Since the build machine is x64-based while the container is arm64-based, you cannot run the container directly on the build machine.
+
+If you want to run this container on the build machine, you need to install QEMU and register the executable types on the host OS.
+
+Use the `tonistiigi/binfmt` image to install QEMU and register the executable types on the host with a single command:
+
+```sh
+docker run --privileged --rm tonistiigi/binfmt --install all
+```
+
+Now you can run arm64 containers on the x64 host:
+
+```sh
+docker run --name=ohos -itd --platform linux/arm64 docker-mini-openharmony:latest
+```
+
+Emulated execution is much slower than native arm64 hardware, so I recommend using it only for quick verification.

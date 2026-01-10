@@ -103,4 +103,20 @@ cd docker-mini-openharmony
 DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64 -t docker-mini-openharmony:latest .
 ```
 
-由于构建机是 x64 架构的，而容器是 arm64 架构的，所以你不能直接在构建机上运行这个容器。你需要将镜像导出或者发布，放到 arm64 架构的服务器上去运行。
+由于构建机是 x64 架构的，而容器是 arm64 架构的，所以你不能直接在构建机上运行这个容器。
+
+如果你想在构建机上运行这个容器，你需要安装 QEMU 并注册 QEMU 解释器。
+
+你可以使用 `tonistiigi/binfmt` 镜像，通过一条命令完成这件事：
+
+```sh
+docker run --privileged --rm tonistiigi/binfmt --install all
+```
+
+现在你可以在 x64 宿主机上运行 arm64 容器了：
+
+```sh
+docker run --name=ohos -itd --platform linux/arm64 docker-mini-openharmony:latest
+```
+
+由于软件模拟的速度远慢于原生 arm64 硬件，建议仅将此方法用于快速验证。
